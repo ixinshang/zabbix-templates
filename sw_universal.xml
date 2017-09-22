@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2017-09-22T17:38:45Z</date>
+    <date>2017-09-22T18:26:27Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -11,14 +11,7 @@
         <template>
             <template>sw_universal</template>
             <name>Universal Switch</name>
-            <description>version 5.2&#13;
-Checks controlled by interface description&#13;
-Upgrade ifdescr -&gt; ifname&#13;
-SNMP Traps &#13;
-&#13;
-^[^!.*] = default (traffic in\out) (10x2meat)&#13;
-^\% = advanced (traffic + errors  + linkupdown)&#13;
-^\# = full (traffic + errors  + port util + linkupdown)</description>
+            <description>version 5.2</description>
             <groups>
                 <group>
                     <name>Templates</name>
@@ -154,46 +147,52 @@ SNMP Traps &#13;
                         <formula/>
                         <conditions>
                             <condition>
-                                <macro>{#IFDESCR}</macro>
+                                <macro>{#IFNAME}</macro>
                                 <value>Ethernet</value>
                                 <operator>8</operator>
                                 <formulaid>B</formulaid>
                             </condition>
                             <condition>
-                                <macro>{#IFDESCR}</macro>
+                                <macro>{#IFNAME}</macro>
                                 <value>Fa</value>
                                 <operator>8</operator>
                                 <formulaid>C</formulaid>
                             </condition>
                             <condition>
-                                <macro>{#IFDESCR}</macro>
-                                <value>Gi</value>
+                                <macro>{#IFNAME}</macro>
+                                <value>xe-</value>
                                 <operator>8</operator>
                                 <formulaid>D</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>ge-</value>
+                                <operator>8</operator>
+                                <formulaid>E</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>Po</value>
+                                <operator>8</operator>
+                                <formulaid>F</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>Te</value>
+                                <operator>8</operator>
+                                <formulaid>G</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>Gi</value>
+                                <operator>8</operator>
+                                <formulaid>H</formulaid>
                             </condition>
                             <condition>
                                 <macro>{#IFALIAS}</macro>
                                 <value>^[^!.*]</value>
                                 <operator>8</operator>
                                 <formulaid>A</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IFDESCR}</macro>
-                                <value>xe-</value>
-                                <operator>8</operator>
-                                <formulaid>E</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IFDESCR}</macro>
-                                <value>ge-</value>
-                                <operator>8</operator>
-                                <formulaid>F</formulaid>
-                            </condition>
-                            <condition>
-                                <macro>{#IFDESCR}</macro>
-                                <value>Po</value>
-                                <operator>8</operator>
-                                <formulaid>G</formulaid>
                             </condition>
                         </conditions>
                     </filter>
@@ -470,53 +469,6 @@ SNMP Traps &#13;
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Incoming mcast on interface $1</name>
-                            <type>4</type>
-                            <snmp_community>public</snmp_community>
-                            <snmp_oid>IF-MIB::ifInMulticastPkts.{#SNMPINDEX}</snmp_oid>
-                            <key>ifInMcast[{#IFNAME}]</key>
-                            <delay>1m</delay>
-                            <history>90d</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>pps</units>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port>161</port>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>Level 2</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>10</type>
-                                    <params/>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                        <item_prototype>
                             <name>Outgoing errors on interface $1</name>
                             <type>4</type>
                             <snmp_community>public</snmp_community>
@@ -529,53 +481,6 @@ SNMP Traps &#13;
                             <value_type>3</value_type>
                             <allowed_hosts/>
                             <units/>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port>161</port>
-                            <description/>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>Level 2</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                            <preprocessing>
-                                <step>
-                                    <type>10</type>
-                                    <params/>
-                                </step>
-                            </preprocessing>
-                            <jmx_endpoint/>
-                            <application_prototypes/>
-                            <master_item_prototype/>
-                        </item_prototype>
-                        <item_prototype>
-                            <name>Outgoing mcast on interface $1</name>
-                            <type>4</type>
-                            <snmp_community>public</snmp_community>
-                            <snmp_oid>IF-MIB::ifOutMulticastPkts.{#SNMPINDEX}</snmp_oid>
-                            <key>ifOutMcast[{#IFNAME}]</key>
-                            <delay>1m</delay>
-                            <history>90d</history>
-                            <trends>365d</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>pps</units>
                             <snmpv3_contextname/>
                             <snmpv3_securityname/>
                             <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -652,6 +557,48 @@ SNMP Traps &#13;
                             <application_prototypes/>
                             <master_item_prototype/>
                         </item_prototype>
+                        <item_prototype>
+                            <name>{#IFNAME} storm-control state</name>
+                            <type>17</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>snmptrap[&quot;(STORM_CONTROL)(.|[[:space:]])*(\&quot;{#IFDESCR}\&quot;)&quot;]</key>
+                            <delay>0</delay>
+                            <history>90d</history>
+                            <trends>0</trends>
+                            <status>0</status>
+                            <value_type>2</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Level 2</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
@@ -677,7 +624,28 @@ SNMP Traps &#13;
                             </tags>
                         </trigger_prototype>
                         <trigger_prototype>
-                            <expression>{sw_universal:snmptrap[&quot;(IF-MIB::linkDown|IF-MIB::linkUp)(.|[[:space:]])*(\&quot;{#IFDESCR}\&quot;)&quot;].str(linkDown)}=1</expression>
+                            <expression>{sw_universal:snmptrap[&quot;(STORM_CONTROL)(.|[[:space:]])*(\&quot;{#IFDESCR}\&quot;)&quot;].str(SHUTDOWN)}=1</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#IFNAME} ({#IFALIAS}) down by storm-control</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>2</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>1</manual_close>
+                            <dependencies/>
+                            <tags>
+                                <tag>
+                                    <tag>snmp traps</tag>
+                                    <value>storm-control</value>
+                                </tag>
+                            </tags>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{sw_universal:snmptrap[&quot;(IF-MIB::linkDown|IF-MIB::linkUp)(.|[[:space:]])*(\&quot;{#IFDESCR}\&quot;)&quot;].str(down)}=1</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{#IFNAME} ({#IFALIAS}) link down</name>
@@ -689,7 +657,13 @@ SNMP Traps &#13;
                             <description/>
                             <type>0</type>
                             <manual_close>1</manual_close>
-                            <dependencies/>
+                            <dependencies>
+                                <dependency>
+                                    <name>{#IFNAME} ({#IFALIAS}) down by storm-control</name>
+                                    <expression>{sw_universal:snmptrap[&quot;(STORM_CONTROL)(.|[[:space:]])*(\&quot;{#IFDESCR}\&quot;)&quot;].str(SHUTDOWN)}=1</expression>
+                                    <recovery_expression/>
+                                </dependency>
+                            </dependencies>
                             <tags>
                                 <tag>
                                     <tag>snmp traps</tag>
@@ -725,10 +699,10 @@ SNMP Traps &#13;
                             <width>900</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
+                            <yaxismax>0.0000</yaxismax>
                             <show_work_period>0</show_work_period>
                             <show_triggers>0</show_triggers>
-                            <type>0</type>
+                            <type>3</type>
                             <show_legend>1</show_legend>
                             <show_3d>0</show_3d>
                             <percent_left>0.0000</percent_left>
@@ -740,7 +714,7 @@ SNMP Traps &#13;
                             <graph_items>
                                 <graph_item>
                                     <sortorder>0</sortorder>
-                                    <drawtype>1</drawtype>
+                                    <drawtype>0</drawtype>
                                     <color>2774A4</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
@@ -752,7 +726,7 @@ SNMP Traps &#13;
                                 </graph_item>
                                 <graph_item>
                                     <sortorder>1</sortorder>
-                                    <drawtype>1</drawtype>
+                                    <drawtype>0</drawtype>
                                     <color>A54F10</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
@@ -760,50 +734,6 @@ SNMP Traps &#13;
                                     <item>
                                         <host>sw_universal</host>
                                         <key>ifOutErrors[{#IFNAME}]</key>
-                                    </item>
-                                </graph_item>
-                            </graph_items>
-                        </graph_prototype>
-                        <graph_prototype>
-                            <name>{#IFNAME} ({#IFALIAS}) mcast</name>
-                            <width>900</width>
-                            <height>200</height>
-                            <yaxismin>0.0000</yaxismin>
-                            <yaxismax>100.0000</yaxismax>
-                            <show_work_period>1</show_work_period>
-                            <show_triggers>1</show_triggers>
-                            <type>0</type>
-                            <show_legend>1</show_legend>
-                            <show_3d>0</show_3d>
-                            <percent_left>0.0000</percent_left>
-                            <percent_right>0.0000</percent_right>
-                            <ymin_type_1>0</ymin_type_1>
-                            <ymax_type_1>0</ymax_type_1>
-                            <ymin_item_1>0</ymin_item_1>
-                            <ymax_item_1>0</ymax_item_1>
-                            <graph_items>
-                                <graph_item>
-                                    <sortorder>0</sortorder>
-                                    <drawtype>5</drawtype>
-                                    <color>007700</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>sw_universal</host>
-                                        <key>ifInMcast[{#IFNAME}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>1</sortorder>
-                                    <drawtype>5</drawtype>
-                                    <color>BBBB00</color>
-                                    <yaxisside>0</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>sw_universal</host>
-                                        <key>ifOutMcast[{#IFNAME}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -954,6 +884,53 @@ SNMP Traps &#13;
                             <master_item_prototype/>
                         </item_prototype>
                         <item_prototype>
+                            <name>Incoming mcast on interface $1</name>
+                            <type>4</type>
+                            <snmp_community>public</snmp_community>
+                            <snmp_oid>IF-MIB::ifInMulticastPkts.{#SNMPINDEX}</snmp_oid>
+                            <key>ifInMcast[{#IFNAME}]</key>
+                            <delay>1m</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>pps</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port>161</port>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Level 3</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
                             <name>Interface $1 bandwith</name>
                             <type>4</type>
                             <snmp_community>public</snmp_community>
@@ -994,6 +971,53 @@ SNMP Traps &#13;
                                 <step>
                                     <type>1</type>
                                     <params>1000000</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint/>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Outgoing mcast on interface $1</name>
+                            <type>4</type>
+                            <snmp_community>public</snmp_community>
+                            <snmp_oid>IF-MIB::ifOutMulticastPkts.{#SNMPINDEX}</snmp_oid>
+                            <key>ifOutMcast[{#IFNAME}]</key>
+                            <delay>1m</delay>
+                            <history>90d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>pps</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port>161</port>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Level 3</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
