@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>3.4</version>
+    <date>2017-10-01T09:52:48Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>sacc_counter</template>
+            <name>Subnet Aggregator</name>
+            <description>please correct {$GROUP} macro</description>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>observer_eye</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Total hosts</name>
+                    <type>8</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>grpsum[&quot;{$GROUP}&quot;,&quot;hostcount&quot;,&quot;max&quot;,&quot;5m&quot;]</key>
+                    <delay>3m</delay>
+                    <history>1w</history>
+                    <trends>2w</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>plz correct groupname parameter!</description>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>observer_eye</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <master_item/>
+                </item>
+                <item>
+                    <name>Alive hosts</name>
+                    <type>8</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>grpsum[&quot;{$GROUP}&quot;,&quot;icmpping&quot;,&quot;max&quot;,&quot;5m&quot;]</key>
+                    <delay>3m</delay>
+                    <history>1w</history>
+                    <trends>2w</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>observer_eye</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <master_item/>
+                </item>
+                <item>
+                    <name>Hosts_Visibility</name>
+                    <type>15</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>host_percent_count</key>
+                    <delay>3m</delay>
+                    <history>2w</history>
+                    <trends>30d</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units>%</units>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params>100*last(&quot;grpsum[\&quot;{$GROUP}\&quot;,\&quot;icmpping\&quot;,\&quot;max\&quot;,\&quot;5m\&quot;]&quot;) / last(&quot;grpsum[\&quot;{$GROUP}\&quot;,\&quot;hostcount\&quot;,\&quot;max\&quot;,\&quot;5m\&quot;]&quot;)</params>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>plz correct groupname parameter!</description>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>observer_eye</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <master_item/>
+                </item>
+            </items>
+            <discovery_rules/>
+            <httptests/>
+            <macros>
+                <macro>
+                    <macro>{$GROUP}</macro>
+                    <value>grname</value>
+                </macro>
+            </macros>
+            <templates>
+                <template>
+                    <name>Template ICMP Ping</name>
+                </template>
+            </templates>
+            <screens/>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{sacc_counter:host_percent_count.last()}&lt;30 and {sacc_counter:host_percent_count.last()}&gt;10</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>There are {ITEM.LASTVALUE1} hosts available</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies>
+                <dependency>
+                    <name>{HOST.NAME} is unavailable by ICMP</name>
+                    <expression>{sacc_counter:icmpping.max(#3)}=0</expression>
+                    <recovery_expression/>
+                </dependency>
+            </dependencies>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{sacc_counter:host_percent_count.last()}&lt;50 and {sacc_counter:host_percent_count.last()}&gt;30</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>There are {ITEM.LASTVALUE1} hosts available</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>2</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies>
+                <dependency>
+                    <name>{HOST.NAME} is unavailable by ICMP</name>
+                    <expression>{sacc_counter:icmpping.max(#3)}=0</expression>
+                    <recovery_expression/>
+                </dependency>
+            </dependencies>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{sacc_counter:host_percent_count.last()}&lt;70 and {sacc_counter:host_percent_count.last()}&gt;50</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>There are {ITEM.LASTVALUE1} hosts available</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>2</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies>
+                <dependency>
+                    <name>{HOST.NAME} is unavailable by ICMP</name>
+                    <expression>{sacc_counter:icmpping.max(#3)}=0</expression>
+                    <recovery_expression/>
+                </dependency>
+            </dependencies>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{sacc_counter:host_percent_count.last()}&lt;90 and {sacc_counter:host_percent_count.last()}&gt;70</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>There are {ITEM.LASTVALUE1} hosts available</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>1</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies>
+                <dependency>
+                    <name>{HOST.NAME} is unavailable by ICMP</name>
+                    <expression>{sacc_counter:icmpping.max(#3)}=0</expression>
+                    <recovery_expression/>
+                </dependency>
+            </dependencies>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{sacc_counter:host_percent_count.last()}&lt;100 and {sacc_counter:host_percent_count.last()}&gt;90</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>There are {ITEM.LASTVALUE1} hosts available</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>1</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies>
+                <dependency>
+                    <name>{HOST.NAME} is unavailable by ICMP</name>
+                    <expression>{sacc_counter:icmpping.max(#3)}=0</expression>
+                    <recovery_expression/>
+                </dependency>
+            </dependencies>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{sacc_counter:host_percent_count.last()}&lt;10 and {sacc_counter:host_percent_count.last()}&gt;1</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>There are {ITEM.LASTVALUE1} hosts available (lol)</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies>
+                <dependency>
+                    <name>{HOST.NAME} is unavailable by ICMP</name>
+                    <expression>{sacc_counter:icmpping.max(#3)}=0</expression>
+                    <recovery_expression/>
+                </dependency>
+            </dependencies>
+            <tags/>
+        </trigger>
+    </triggers>
+</zabbix_export>
